@@ -29,9 +29,9 @@ public class TransferController {
 
     private VerificatorAbstractFactory verificatorAbstractFactory;
 
-    public TransferController(TransferService transferService, VerificatorAbstractFactory verificatorAbstractFactory) {
+    public TransferController(TransferService transferService, RequestFactory requestFactory, VerificatorAbstractFactory verificatorAbstractFactory) {
         this.transferService = transferService;
-        this.requestFactory = new RequestFactory();
+        this.requestFactory = requestFactory;
         this.verificatorAbstractFactory = verificatorAbstractFactory;
     }
 

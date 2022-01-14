@@ -19,5 +19,8 @@ public class VerificatorAbstractFactory {
     public AbstractVerificator getTransferVerificator(VerificationType type) {
         return new TransferVerificator(verificationStrategyFactory.getDesiredStrategy(type), verificationService);
     }
+    public AbstractVerificator getCreateBankAccountVerificator(VerificationType type) {
+        return new CreateBankAccountVerificator(verificationStrategyFactory.getDesiredStrategy(type), verificationService);
+    }
 
 }
