@@ -28,4 +28,9 @@ public class InMemoryBankAccountRepository implements BankAccountRepository{
     public BankAccount getBankAccount(String accountNUmber) {
         return bankAccountsMap.get(accountNUmber);
     }
+
+    @Override
+    public void register(BankAccount bankAccount) {
+        bankAccountsMap.put(bankAccount.getAccountNumber(), bankAccount);
+    }
 }
