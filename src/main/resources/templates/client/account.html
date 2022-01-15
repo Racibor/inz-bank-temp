@@ -42,6 +42,7 @@
                 <th>Sender</th>
                 <th>Receiver</th>
                 <th>Amount</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
@@ -59,6 +60,7 @@
                         <td style="color: green" th:text="'+' + ${transfer.amount} + ' ' + ${account.currency}"></td>
                     </th:block>
 
+                    <td><a th:href="@{'/api/user/transfer/' + ${transfer.id}}" target="_blank"><input type="button" class="btn btn-outline-dark" value="Show confirmation"/></a></td>
                 </tr>
             </tbody>
         </table>

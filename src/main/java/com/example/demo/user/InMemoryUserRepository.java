@@ -21,12 +21,12 @@ public class InMemoryUserRepository implements UserRepository {
         this.bankAccountService = bankAccountService;
         this.users = new ConcurrentHashMap<>();
         User user = new User("test", BCrypt.withDefaults().hashToString(5, "test".toCharArray()), UserPriviledges.getClientPriviledges());
-        user.addAccount(bankAccountService.getBankAccount("200040003000"));
-        user.addAccount(bankAccountService.getBankAccount("2342353453445"));
+        user.addAccount(bankAccountService.getBankAccounts().get(0));
+        user.addAccount(bankAccountService.getBankAccounts().get(1));
         this.users.put(user.getLogin(), user);
 
         User user2 = new User("test2", BCrypt.withDefaults().hashToString(5, "test2".toCharArray()), UserPriviledges.getNoPriviledges());
-        user2.addAccount(bankAccountService.getBankAccount("345623450984"));
+        user2.addAccount(bankAccountService.getBankAccounts().get(2));
         this.users.put(user2.getLogin(), user2);
     }
 

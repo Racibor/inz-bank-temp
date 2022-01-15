@@ -52,7 +52,11 @@ public class TransferService {
 
     public List<Transfer> getAssignedTransfers(BankAccount bankAccount){
         return transferRepository.getAccountsTransfers(bankAccount);
-    };
+    }
+
+    public Transfer getTransferById(String id){
+        return transferRepository.getTransfer(id);
+    }
 
     public List<Transfer> getMarkedTransfers() {
         return null;
