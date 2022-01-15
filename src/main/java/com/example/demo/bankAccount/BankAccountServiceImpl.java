@@ -20,4 +20,9 @@ public class BankAccountServiceImpl implements BankAccountService{
     public void registerBankAccount(BankAccount bankAccount) {
         bankAccountRepository.register(bankAccount);
     }
+
+    @Override
+    public boolean isAccountNumberExists(String accountNumber) {
+        return (getBankAccount(accountNumber) != null);
+    }
 }
