@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import java.math.BigDecimal;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 @Repository
 public class InMemoryBankAccountRepository implements BankAccountRepository{
@@ -32,5 +33,10 @@ public class InMemoryBankAccountRepository implements BankAccountRepository{
     @Override
     public void register(BankAccount bankAccount) {
         bankAccountsMap.put(bankAccount.getAccountNumber(), bankAccount);
+    }
+
+    @Override
+    public List<BankAccount> getBankAccounts() {
+        return this.bankAccountsMap.values().stream().collect(Collectors.toList());
     }
 }

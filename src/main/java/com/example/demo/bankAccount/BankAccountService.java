@@ -4,5 +4,5 @@ public interface BankAccountService {
 
     BankAccount getBankAccount(String accountNumber);
     void registerBankAccount(BankAccount bankAccount);
-
+    boolean isAccountNumberExists(String accountNumber);
 }

@@ -3,6 +3,8 @@ package com.example.demo.controllers.rest;
 import com.example.demo.bankAccount.BankAccount;
 import com.example.demo.bankAccount.BankAccountRepository;
 import com.example.demo.bankAccount.BankAccountService;
+import com.example.demo.bankAccount.builder.BankAccountDirector;
+import com.example.demo.bankAccount.builder.directorFactory.BankAccountDirectorFactory;
 import com.example.demo.request.RequestFactory;
 import com.example.demo.request.RequestOrder;
 import com.example.demo.user.User;
@@ -28,11 +30,13 @@ public class AccountController {
     private BankAccountService bankAccountService;
     private RequestFactory requestFactory;
     private VerificatorAbstractFactory verificatorAbstractFactory;
+    private BankAccountDirectorFactory bankAccountDirectorFactory;
 
-    public AccountController(BankAccountService bankAccountService, RequestFactory requestFactory, VerificatorAbstractFactory verificatorAbstractFactory) {
+    public AccountController(BankAccountService bankAccountService, RequestFactory requestFactory, VerificatorAbstractFactory verificatorAbstractFactory, BankAccountDirectorFactory bankAccountDirectorFactory) {
         this.bankAccountService = bankAccountService;
         this.requestFactory = requestFactory;
         this.verificatorAbstractFactory = verificatorAbstractFactory;
+        this.bankAccountDirectorFactory = bankAccountDirectorFactory;
     }
 
     @GetMapping("/accounts")
@@ -48,7 +52,7 @@ public class AccountController {
     @PostMapping("/accounts")
     public Map<String, String> createBankAccountRequest(HttpSession httpSession){
         User user = (User) httpSession.getAttribute("user");
-        BankAccount bankAccount = new BankAccount("34".repeat(6), BigDecimal.valueOf(0), "PLN");
+        BankAccount bankAccount = bankAccountDirectorFactory.getBankAccountDirector().getBankAccount();
         RequestOrder bankAccountRequest = requestFactory.createBankAccountRequest(bankAccount, user, bankAccountService);
         AbstractVerificator bankAccountVerificator = verificatorAbstractFactory.getCreateBankAccountVerificator(VerificationType.EMAIL);
         String id = bankAccountVerificator.startVerification(bankAccountRequest);
