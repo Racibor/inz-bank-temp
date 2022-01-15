@@ -2,6 +2,8 @@ package com.example.demo.bankAccount;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BankAccountServiceImpl implements BankAccountService{
 
@@ -24,5 +26,10 @@ public class BankAccountServiceImpl implements BankAccountService{
     @Override
     public boolean isAccountNumberExists(String accountNumber) {
         return (getBankAccount(accountNumber) != null);
+    }
+
+    @Override
+    public List<BankAccount> getBankAccounts() {
+        return bankAccountRepository.getBankAccounts();
     }
 }

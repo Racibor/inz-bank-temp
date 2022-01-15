@@ -35,7 +35,7 @@
             <tr th:each="account : ${userAccounts}">
                 <td th:text="${account.accountNumber}"></td>
                 <td th:text="${#numbers.formatDecimal(account.balance, 1, 2)} + ' ' + ${account.currency}"></td>
-                <td><a th:href="@{/client/account(accountNumber=${account.accountNumber})}"><input type="button" value="Show Details"/></a></td>
+                <td><a th:href="@{/client/account(accountNumber=${account.accountNumber})}"><input type="button" class="btn btn-outline-dark" value="Show Details"/></a></td>
             </tr>
         </tbody>
 
