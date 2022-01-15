@@ -15,7 +15,7 @@ public class AccountNumberGenerator implements Generator{
     }
 
     @Override
-    public String generate() {
+    public synchronized String generate() {
 
         StringBuilder stringBuilder;
         Random random = new Random();
